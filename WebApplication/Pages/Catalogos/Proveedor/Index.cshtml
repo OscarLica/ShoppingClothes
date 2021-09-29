@@ -1,0 +1,123 @@
+﻿@page
+@model WebApplication.Pages.Catalogos.Proveedor.IndexModel
+@{
+}
+<div class="container">
+    <div class="row justify-content-start">
+        <h1 class="text-info">Proveedores</h1>
+    </div>
+    <div class="row justify-content-end">
+        <button data-nuevo="true" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+    </div>
+    <div class="row box-shadow">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Compañia</th>
+                        <th>Contacto</th>
+                        <th>Cargo</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="needs-validation" novalidate id="frm">
+                <div class="modal-body">
+                    <input data-name="Id" type="hidden" value="0" />
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Compañia</label>
+                                <input class="form-control" required placeholder="Ingrese el campo Compañia" data-name="NombreCompañia" />
+                                <div class="invalid-feedback">
+                                    El campo Compañia es requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Contacto</label>
+                                <input class="form-control" required placeholder="Ingrese el campo Contacto" data-name="NombreContacto" />
+                                <div class="invalid-feedback">
+                                    El campo Contacto es requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Cargo</label>
+                                <input class="form-control" required placeholder="Ingrese el campo Cargo" data-name="CargoContacto" />
+                                <div class="invalid-feedback">
+                                    El campo Cargo es requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Dirección</label>
+                                <input class="form-control" required placeholder="Ingrese el campo Dirección" data-name="Direccion" />
+                                <div class="invalid-feedback">
+                                    El campo Dirección es requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Teléfono</label>
+                                <input class="form-control" required placeholder="Ingrese el campo Teléfono" data-name="Telefono" />
+                                <div class="invalid-feedback">
+                                    El campo Teléfono es requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Correo</label>
+                                <input class="form-control" required placeholder="Ingrese el campo Correo" data-name="Email" />
+                                <div class="invalid-feedback">
+                                    El campo Correo es requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/js/pages/proveedor.js"></script>
+}

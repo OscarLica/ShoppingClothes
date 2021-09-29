@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/sidebar.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<body>
+    <partial name="_NavBar" />
+
+    <div class="row" id="body-row">
+        <partial name="_SideBar" />
+        <!-- MAIN -->
+        <div class="col p-4 box-shadow">
+            <h1 class="display-4 text-center">SISTEMA DE TIENDA DE ROPA</h1>
+            <div class="card">
+                <h5 class="card-header font-weight-light">V1.0</h5>
+                <div class="card-body">
+                    @RenderBody()
+                </div>
+            </div>
+        </div><!-- Main Col END -->
+    </div><!-- body-row END -->
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - WebApplication - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/sidebar.js" asp-append-version="true"></script>
+    <script src="~/js/Module.js"></script>
+    <script src="~/js/table.js"></script>
+    <script src="~/js/forms.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/sweetalert.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

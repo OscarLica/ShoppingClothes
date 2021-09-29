@@ -1,0 +1,47 @@
+﻿@page
+@model WebApplication.Pages.Facturacion.Compra.ComprasModel
+@{
+}
+
+<a href="~/Facturacion/Compra/Index">Nueva Compra</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nº Factura</th>
+            <th>Usuario</th>
+            <th>Proveedor</th>
+            <th>Fecha</th>
+            <th>SubTotal</th>
+            <th>Descuento</th>
+            <th>Iva</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Compra)
+        {
+            <tr><td>@item.NoFactura</td>
+            <td>@item.UserName</td>
+            <td>@item.Compania</td>
+            <td>@item.FechaCompra.Value.ToShortDateString()</td>
+            <td>@item.SubTotal</td>
+            <td>@item.Descuento</td>
+            <td>@item.Iva</td>
+            <td>@item.Total</td>
+            <td><a href="~/Facturacion/Compra/Detalle/@item.IdCompra">Detalle</a></td></tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Total</th>
+            <th>@Model.Compra.Sum(x => x.SubTotal)</th>
+            <th></th>
+            <th></th>
+            <th>@Model.Compra.Sum(x => x.Total)</th>
+        </tr>
+    </tfoot>
+</table>

@@ -1,0 +1,80 @@
+﻿@page
+@model WebApplication.Pages.Catalogos.Almacen.IndexModel
+@{
+}
+<div class="container">
+    <div class="row justify-content-start">
+        <h1 class="text-info">Almacenes</h1>
+    </div>
+    <div class="row justify-content-end">
+        <button data-nuevo="true" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+    </div>
+    <div class="row box-shadow">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Activo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="needs-validation" novalidate id="frm">
+                <div class="modal-body">
+                    <input data-name="Id" type="hidden" value="0" />
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input class="form-control" required placeholder="Ingrese el campo Nombre" data-name="Nombre" />
+                                <div class="invalid-feedback">
+                                    El campo nombre es requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <input class="form-control" required placeholder="Ingrese el campo Descripción" data-name="Descripcion" />
+                                <div class="invalid-feedback">
+                                    El campo Descripción es requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked data-name="Estado">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/js/pages/almacen.js"></script>
+}

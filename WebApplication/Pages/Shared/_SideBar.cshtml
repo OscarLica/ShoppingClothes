@@ -1,0 +1,84 @@
+﻿<!-- Sidebar -->
+<div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+    <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+    <!-- Bootstrap List Group -->
+    <ul class="list-group">
+        <!-- Separator with title -->
+        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+            <small>MENU PRINCIPAL</small>
+        </li>
+        <!-- /END Separator -->
+        <!-- Menu with submenu -->
+        <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <span class="fas fa-tachometer-alt fa-fw mr-3"></span>
+                <span class="menu-collapsed">Dashboard</span>
+                <i class="fas fa-angle-down ml-auto flecha"></i>
+            </div>
+        </a>
+        <!-- Submenu content -->
+        <div id='submenu1' class="collapse sidebar-submenu">
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Reportes</span>
+            </a>
+        </div>
+        <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <span class="fa fa-user fa-fw mr-3"></span>
+                <span class="menu-collapsed">Catalogos</span>
+                <span class="fas fa-angle-down ml-auto flecha"></span>
+            </div>
+        </a>
+        <!-- Submenu content -->
+        <div id='submenu2' class="collapse sidebar-submenu">
+            <a href="~/Catalogos/Marca" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Marca</span>
+            </a>
+            <a href="~/Catalogos/Talla" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Talla</span>
+            </a>
+            <a href="~/Catalogos/Almacen" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Almacen</span>
+            </a>
+            <a href="~/Catalogos/Categoria" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Categoria</span>
+            </a>
+            <a href="~/Catalogos/Subcategoria" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">SubCategoria</span>
+            </a>
+            <a href="~/Catalogos/Color" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Color</span>
+            </a>
+            <a href="~/Catalogos/Proveedor" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Proveedor</span>
+            </a>
+            <a href="~/Catalogos/Producto" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Producto</span>
+            </a>
+        </div>
+        <a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <span class="fa fa-user fa-fw mr-3"></span>
+                <span class="menu-collapsed">Facturación</span>
+                <span class="fas fa-angle-down ml-auto flecha"></span>
+            </div>
+        </a>
+        <div id='submenu3' class="collapse sidebar-submenu">
+            <a href="~/Facturacion/Compra/Compras" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Compras</span>
+            </a>
+            <a href="~/Facturacion/Venta" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">ventas</span>
+            </a>
+        </div>
+        <!-- Separator without title -->
+        <li class="list-group-item sidebar-separator menu-collapsed"></li>
+
+        <a href="#top" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                <span id="collapse-text" class="menu-collapsed">Collapse</span>
+            </div>
+        </a>
+    </ul><!-- List Group END-->
+</div><!-- sidebar-container END -->

@@ -1,0 +1,15 @@
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\obj\Debug\net5.0\DataAccess.csproj.AssemblyReference.cache
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\obj\Debug\net5.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfo.cs
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\bin\Debug\net5.0\DataAccess.deps.json
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\bin\Debug\net5.0\DataAccess.dll
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\bin\Debug\net5.0\ref\DataAccess.dll
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\bin\Debug\net5.0\DataAccess.pdb
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\bin\Debug\net5.0\DataEntities.dll
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\bin\Debug\net5.0\DataEntities.pdb
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CopyComplete
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\obj\Debug\net5.0\DataAccess.dll
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\obj\Debug\net5.0\ref\DataAccess.dll
+C:\Users\Oscar Jimenez\source\repos\Clothing\DataAccess\obj\Debug\net5.0\DataAccess.pdb

@@ -1,0 +1,125 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "TiendaropaContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": null,
+   "ProjectRootNamespace": "DataEntities",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Cat_Almacen]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Cat_Categoria]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Cat_Color]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Cat_Marca]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Cat_Proveedor]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Cat_SubCategoria]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Cat_Talla]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[RegistroPersona]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Roles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[RolesUsuario]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[SesionUsuarios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_Almacen_Producto]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_Compras]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_Configuracion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_Detalle_Compra]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_Detalle_Venta]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_Devoluciones]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_MovimientoProductos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_Producto]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_Producto_Dañado]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_Promocion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_TipoMovimiento]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tbl_Ventas]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "DESKTOP-GH1UNPJ\\SQLEXPRESS.TiendaRopa",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}
