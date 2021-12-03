@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Oscar Jimenez\\source\\repos\\Clothing\\DataEntities\\DataEntities.csproj": {}
+    "C:\\Users\\Oscar Jimenez\\Downloads\\Clothing13\\DataEntities\\DataEntities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Oscar Jimenez\\source\\repos\\Clothing\\DataEntities\\DataEntities.csproj": {
+    "C:\\Users\\Oscar Jimenez\\Downloads\\Clothing13\\DataEntities\\DataEntities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Oscar Jimenez\\source\\repos\\Clothing\\DataEntities\\DataEntities.csproj",
+        "projectUniqueName": "C:\\Users\\Oscar Jimenez\\Downloads\\Clothing13\\DataEntities\\DataEntities.csproj",
         "projectName": "DataEntities",
-        "projectPath": "C:\\Users\\Oscar Jimenez\\source\\repos\\Clothing\\DataEntities\\DataEntities.csproj",
+        "projectPath": "C:\\Users\\Oscar Jimenez\\Downloads\\Clothing13\\DataEntities\\DataEntities.csproj",
         "packagesPath": "C:\\Users\\Oscar Jimenez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Oscar Jimenez\\source\\repos\\Clothing\\DataEntities\\obj\\",
+        "outputPath": "C:\\Users\\Oscar Jimenez\\Downloads\\Clothing13\\DataEntities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

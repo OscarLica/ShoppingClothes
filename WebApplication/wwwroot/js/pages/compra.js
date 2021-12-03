@@ -183,8 +183,9 @@
         event.stopPropagation();
 
         let formValidation = Module.get("form-validation");
-        let compra = formValidation.GetDataForm("data-name", "name");
-        compra.detalle = detalle;
+        let TblCompras = formValidation.GetDataForm("data-name", "name");
+        TblCompras.Total = $formater.unformatDecimalString(TblCompras.Total);
+        TblCompras.detalle = detalle;
 
         if (!detalle.length) {
             swal({
@@ -195,7 +196,7 @@
             });
             return false;
         }
-        $.post("/api/Compra", compra).then((response) => {
+        $.post("/api/compra", TblCompras).then((response) => {
             swal({
                 title: "Compra!",
                 text: "Compra realizada exitosamente!",
@@ -209,7 +210,6 @@
         });
     });
 
-
     $(document).on("submit", "#frm-detalle", function (event) {
 
         event.preventDefault();
@@ -220,7 +220,7 @@
         if (!detalletmp.Cantidad || detalletmp.Cantidad === "0") {
             swal({
                 title: "Datos incorrectos",
-                text: "La cantidad debe ser mayot a 0.",
+                text: "La cantidad debe ser mayor a 0.",
                 icon: "error",
                 button: "Ok",
             });
@@ -252,7 +252,7 @@
 
             let precioC = $formater.formatDecimalString(detalletmp.PrecioCompra);
 
-            detalletmp.SubTotal = $formater.unformatDecimalString(cnt) * $formater.unformatDecimalString(precioC);
+            detalletmp.subTotal = $formater.unformatDecimalString(cnt) * $formater.unformatDecimalString(precioC);
             detalle.push(detalletmp);
             this.reset();
             loadDetalle(detalle);

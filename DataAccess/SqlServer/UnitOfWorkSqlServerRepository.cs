@@ -36,6 +36,8 @@ namespace DataAccess.SqlServer
 
         public IRepositoryCompra repositoryCompra { get; }
 
+        public IRepositoryVenta repositoryVenta { get; }
+
         /// <summary>
         ///     Inicializa los repotorios
         /// </summary>
@@ -52,6 +54,7 @@ namespace DataAccess.SqlServer
             repositoryProveedor = new RepositoryProveedor(context, transaction);
             repositoryProducto = new RepositoryProducto(context, transaction);
             repositoryCompra = new RepositoryCompra(context, transaction);
+            repositoryVenta = new RepositoryVenta(context, transaction);
         }
 
     }

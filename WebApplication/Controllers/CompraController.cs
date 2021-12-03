@@ -23,5 +23,11 @@ namespace WebApplication.Controllers
         public IActionResult Create([FromForm] Compra compra) {
             return Ok(Service.Post(compra));
         }
+
+        [HttpGet]
+        public IActionResult GetProductosComprados()
+        {
+            return Ok(Service.GetProductosComprados());
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace DataAccess.Repositories
 
         List<Compra> GetAll();
         List<Detalle> GetDetalleById(int IdCompra);
+        List<Detalle> GetProductosComprados();
         Compra Post(Compra almacen);
         Compra Update(Compra almacen);
         Compra Get(int Id);
@@ -102,7 +103,7 @@ namespace DataAccess.Repositories
         public List<Detalle> GetDetalleById(int IdCompra)
         {
             var result = new List<Detalle>();
-            var command = CreateCommand(@$"select c.*, p.NombreProducto, m.Nombre as Marca, t.Nombre as Talla, co.Nombre as Color, alm.Nombre as Almacen from Tbl_Detalle_Compra c
+            var command = CreateCommand(@$"select c.*, p.NombreProducto, m.Nombre as Marca, t.Nombre as Talla, co.Nombre as Color, alm.Nombre as Almacen,ap.PrecioVenta from Tbl_Detalle_Compra c
                                             JOIN Tbl_Producto p on c.IdProducto = p.Id
                                             JOIN Tbl_Almacen_Producto ap on p.Id = ap.IdProducto and ap.IdCompra = c.IdCompra
                                             JOIN Cat_Almacen alm on ap.IdAlmacen = alm.Id
@@ -125,7 +126,7 @@ namespace DataAccess.Repositories
                         SubTotal = Convert.ToDecimal(reader[nameof(Detalle.SubTotal)]),
                         Descuento = Convert.ToDecimal(reader[nameof(Detalle.Descuento)]),
                         Total = Convert.ToDecimal(reader[nameof(Detalle.Total)]),
-
+                        PrecioVenta = Convert.ToDecimal(reader[nameof(Detalle.PrecioVenta)]),
                         Marca = Convert.ToString(reader[nameof(Detalle.Marca)]),
                         Color = Convert.ToString(reader[nameof(Detalle.Color)]),
                         Talla = Convert.ToString(reader[nameof(Detalle.Talla)]),
@@ -133,6 +134,56 @@ namespace DataAccess.Repositories
                     });
                 }
             }
+            return result;
+        }
+
+        public List<Detalle> GetProductosComprados()
+        {
+            var result = new List<Detalle>();
+            var command = CreateCommand(@$"select c.*, p.NombreProducto, m.Nombre as Marca, t.Nombre as Talla, co.Nombre as Color, alm.Nombre as Almacen, ap.PrecioVenta, ap.Cantidad from Tbl_Detalle_Compra c
+                                            JOIN Tbl_Producto p on c.IdProducto = p.Id
+                                            JOIN Tbl_Almacen_Producto ap on p.Id = ap.IdProducto and ap.IdCompra = c.IdCompra
+                                            JOIN Cat_Almacen alm on ap.IdAlmacen = alm.Id
+                                            JOIN Cat_Marca m on ap.IdMarca = m.Id
+                                            JOIN Cat_Talla t on ap.IdTalla = t.Id
+                                            JOIN Cat_Color co on ap.IdColor = co.Id");
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    result.Add(new Detalle
+                    {
+                        IdProducto = Convert.ToInt32(reader[nameof(Detalle.IdProducto)]),
+                        Cantidad = Convert.ToInt32(reader[nameof(Detalle.Cantidad)]),
+                        PrecioCompra = Convert.ToDecimal(reader[nameof(Detalle.PrecioCompra)]),
+                        NombreProducto = Convert.ToString(reader[nameof(Detalle.NombreProducto)]),
+                        Almacen = Convert.ToString(reader[nameof(Detalle.Almacen)]),
+                        SubTotal = Convert.ToDecimal(reader[nameof(Detalle.SubTotal)]),
+                        Descuento = Convert.ToDecimal(reader[nameof(Detalle.Descuento)]),
+                        Total = Convert.ToDecimal(reader[nameof(Detalle.Total)]),
+                        PrecioVenta = Convert.ToDecimal(reader[nameof(Detalle.PrecioVenta)]),
+                        Marca = Convert.ToString(reader[nameof(Detalle.Marca)]),
+                        Color = Convert.ToString(reader[nameof(Detalle.Color)]),
+                        Talla = Convert.ToString(reader[nameof(Detalle.Talla)]),
+
+                    });
+                }
+            }
+
+            result = (from r in result
+                      group r by new { r.IdProducto, r.NombreProducto, r.Marca, r.Talla, r.Color, r.PrecioVenta }
+                      into grupoP
+                      select new Detalle
+                      {
+                          IdProducto = grupoP.Key.IdProducto,
+                          NombreProducto = grupoP.Key.NombreProducto,
+                          Cantidad = grupoP.FirstOrDefault(x => x.NombreProducto == grupoP.Key.NombreProducto && x.Talla == grupoP.Key.Talla && x.Color == grupoP.Key.Color && x.Marca == grupoP.Key.Marca && x.PrecioVenta == grupoP.Key.PrecioVenta )?.Cantidad,
+                          Marca = grupoP.Key.Marca,
+                          Talla = grupoP.Key.Talla,
+                          Color = grupoP.Key.Color,
+                          PrecioVenta = grupoP.Key.PrecioVenta
+                      }).ToList();
             return result;
         }
 

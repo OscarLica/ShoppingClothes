@@ -32,5 +32,6 @@ namespace DataEntities
         public virtual SesionUsuarios IdUsuarioNavigation { get; set; }
         public virtual ICollection<TblDetalleVenta> TblDetalleVenta { get; set; }
         public virtual ICollection<TblDevoluciones> TblDevoluciones { get; set; }
+        public List<Detalle> detalle { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace WebApplication.Services
     public interface IServiceCompra
     {
         List<Compra> GetAll();
+        List<Detalle> GetProductosComprados();
         Compra Post(Compra compra);
         Compra Update(Compra compra);
         Compra Get(int Id);
@@ -48,6 +49,15 @@ namespace WebApplication.Services
             using (var context = _unitOfWork.Create(Settings.DefaultConnection))
             {
                 var records = context.Repositories.repositoryCompra.GetAll();
+                return records;
+            }
+        }
+
+        public List<Detalle> GetProductosComprados()
+        {
+            using (var context = _unitOfWork.Create(Settings.DefaultConnection))
+            {
+                var records = context.Repositories.repositoryCompra.GetProductosComprados();
                 return records;
             }
         }

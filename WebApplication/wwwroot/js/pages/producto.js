@@ -19,6 +19,7 @@
         let formValidation = Module.get("form-validation");
         $("#frm")[0].reset();
         loadSubCategoria();
+       $("input[data-name='Id']").val(0);
         formValidation.InitValidation();
     })
 

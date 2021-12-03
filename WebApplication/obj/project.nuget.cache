@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+NCEaAMFuAiB0FvWOTZLEI55eMYCCwO3MOPwQ7gKQgs2W5Q0SANGP1rXYUUVkMfd+ohNC2qwpen7OpnuxsHWlQ==",
+  "dgSpecHash": "L1Cl0l0ALIA+FPDPH8YdYmqq6iZj1bhHjLYXdwRD4N46ctdaaZWIO+J2lIYWkIrDln164pT24/R2/uvjh1fyFQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Oscar Jimenez\\source\\repos\\Clothing\\WebApplication\\WebApplication.csproj",
+  "projectFilePath": "C:\\Users\\Oscar Jimenez\\Downloads\\Clothing13\\WebApplication\\WebApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Oscar Jimenez\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Oscar Jimenez\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.7\\microsoft.aspnetcore.cryptography.internal.5.0.7.nupkg.sha512",

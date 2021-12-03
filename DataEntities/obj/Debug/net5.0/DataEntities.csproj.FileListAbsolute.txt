@@ -10,3 +10,39 @@ C:\Users\Oscar Jimenez\source\repos\Clothing\DataEntities\obj\Debug\net5.0\DataE
 C:\Users\Oscar Jimenez\source\repos\Clothing\DataEntities\obj\Debug\net5.0\ref\DataEntities.dll
 C:\Users\Oscar Jimenez\source\repos\Clothing\DataEntities\obj\Debug\net5.0\DataEntities.pdb
 C:\Users\Oscar Jimenez\source\repos\Clothing\DataEntities\obj\Debug\net5.0\DataEntities.csproj.AssemblyReference.cache
+C:\Users\Personal\Downloads\Clothing\DataEntities\bin\Debug\net5.0\DataEntities.deps.json
+C:\Users\Personal\Downloads\Clothing\DataEntities\bin\Debug\net5.0\DataEntities.dll
+C:\Users\Personal\Downloads\Clothing\DataEntities\bin\Debug\net5.0\ref\DataEntities.dll
+C:\Users\Personal\Downloads\Clothing\DataEntities\bin\Debug\net5.0\DataEntities.pdb
+C:\Users\Personal\Downloads\Clothing\DataEntities\obj\Debug\net5.0\DataEntities.csproj.AssemblyReference.cache
+C:\Users\Personal\Downloads\Clothing\DataEntities\obj\Debug\net5.0\DataEntities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Personal\Downloads\Clothing\DataEntities\obj\Debug\net5.0\DataEntities.AssemblyInfoInputs.cache
+C:\Users\Personal\Downloads\Clothing\DataEntities\obj\Debug\net5.0\DataEntities.AssemblyInfo.cs
+C:\Users\Personal\Downloads\Clothing\DataEntities\obj\Debug\net5.0\DataEntities.csproj.CoreCompileInputs.cache
+C:\Users\Personal\Downloads\Clothing\DataEntities\obj\Debug\net5.0\DataEntities.dll
+C:\Users\Personal\Downloads\Clothing\DataEntities\obj\Debug\net5.0\ref\DataEntities.dll
+C:\Users\Personal\Downloads\Clothing\DataEntities\obj\Debug\net5.0\DataEntities.pdb
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\bin\Debug\net5.0\DataEntities.deps.json
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\bin\Debug\net5.0\DataEntities.dll
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\bin\Debug\net5.0\ref\DataEntities.dll
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\bin\Debug\net5.0\DataEntities.pdb
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.csproj.AssemblyReference.cache
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.AssemblyInfoInputs.cache
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.AssemblyInfo.cs
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.csproj.CoreCompileInputs.cache
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.dll
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\obj\Debug\net5.0\ref\DataEntities.dll
+C:\Users\Personal\Desktop\transición\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.pdb
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\bin\Debug\net5.0\DataEntities.deps.json
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\bin\Debug\net5.0\DataEntities.dll
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\bin\Debug\net5.0\ref\DataEntities.dll
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\bin\Debug\net5.0\DataEntities.pdb
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.csproj.AssemblyReference.cache
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.AssemblyInfoInputs.cache
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.AssemblyInfo.cs
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.csproj.CoreCompileInputs.cache
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.dll
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\obj\Debug\net5.0\ref\DataEntities.dll
+C:\Users\Oscar Jimenez\Downloads\Clothing13\DataEntities\obj\Debug\net5.0\DataEntities.pdb

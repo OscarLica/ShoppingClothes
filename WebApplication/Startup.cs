@@ -50,6 +50,7 @@ namespace WebApplication
             services.AddTransient<IServicesSubCategoria, ServicesSubCategoria>();
             services.AddTransient<IServiceTalla, ServiceTalla>();
             services.AddTransient<IServiceCompra, ServiceCompra>();
+            services.AddTransient<IServiceVenta, ServiceVenta>();
 
             services.AddRazorPages();
             services.AddControllers();

@@ -2,3 +2,202 @@
 @model WebApplication.Pages.Facturacion.Venta.IndexModel
 @{
 }
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Facturacion/Venta/Ventas">Ventas</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nueva venta</li>
+    </ol>
+</nav>
+
+<form class="needs-validation" novalidate id="frm-detalle">
+    <h3 class="text-left text-info">Datos del producto</h3>
+    <div class="border-top my-3"></div>
+    <div class="form-row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Producto</label>
+                <div class="input-group mb-3">
+                    <input data-detalle-name="IdProducto" type="text" class="form-control" hidden readonly>
+                    <input data-detalle-name="NombreProducto" type="text" class="form-control"  readonly required>
+                    <div class="input-group-append" style="cursor:pointer">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                    <div class="invalid-feedback">
+                        El campo Producto es requerido
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Cantidad</label>
+                <input data-detalle-name="Cantidad" class="form-control" required data-val-masktype="integer" readonly/>
+                <div class="invalid-feedback">
+                    El campo Cantidad es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Precio Venta</label>
+                <input data-detalle-name="PrecioVenta" class="form-control" required data-val-masktype="decimal" readonly />
+                <div class="invalid-feedback">
+                    El campo Precio Venta es requerido
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Detalle del producto</label>
+                <textarea data-detalle-name="Detalle" class="form-control" data-val-masktype="decimal" readonly rows="5" placeholder="Detalle del producto"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="text-right">
+        <button class="btn btn-primary" type="submit">Agregar</button>
+    </div>
+</form>
+
+<form class="needs-validation" novalidate id="frm-compra">
+    <h3 class="text-left text-info">Datos venta</h3>
+    <div class="border-top my-3"></div>
+    <div class="form-row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Nº Factura</label>
+                <input class="form-control" placeholder="0000" data-name="NumeroFactura" required readonly />
+                <div class="invalid-feedback">
+                    El campo Factura es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" class="form-control" placeholder="dd/mm/aaaa" data-name="FechaCompra" required asp-for="Hoy" />
+                <div class="invalid-feedback">
+                    El campo Fecha es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Cliente</label>
+                <input class="form-control" placeholder="Nombre de cliente" data-name="NombreCliente" required/>
+                <div class="invalid-feedback">
+                    El campo cliente es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Sub total</label>
+                <input class="form-control" placeholder="0.0" data-name="SubTotal" required readonly />
+                <div class="invalid-feedback">
+                    El campo SubTotal es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Descuento</label>
+                <input class="form-control" placeholder="0.0" data-name="Descuento" required data-val-masktype="integer" asp-for="Descuento" />
+                <div class="invalid-feedback">
+                    El campo Descuento es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Iva</label>
+                <input class="form-control" placeholder="0" data-name="Iva" required data-val-masktype="integer" asp-for="Iva" />
+                <div class="invalid-feedback">
+                    El campo Iva es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Total</label>
+                <input class="form-control" placeholder="0.0" data-name="Total" required readonly />
+                <div class="invalid-feedback">
+                    El campo Total es requerido
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-right">
+        <button class="btn btn-primary" type="submit">Vender</button>
+    </div>
+
+</form>
+<form>
+    <h3 class="text-left text-info">Detalle de venta</h3>
+    <div class="border-top my-3"></div>
+    <table class="table table-striped">
+        <thead>
+            <tr><th>Producto</th><th>Marca</th><th>Talla</th><th>Color</th><th>Cantidad</th><th>Precio Venta</th><th>SubTotal</th><th>Acciones</th></tr>
+        </thead>
+        <tbody id="body"></tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Total</th>
+                <th id="tCantidad">C$ 0.00</th>
+                <th id="tPVenta">C$ 0.00</th>
+                <th id="tSubTotal">C$ 0.00</th>
+            </tr>
+        </tfoot>
+    </table>
+    @*<div class="text-right">
+            <button class="btn btn-primary" type="submit">Comprar</button>
+        </div>*@
+</form>
+
+<div class="modal fade" id="productos-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lista de productos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Busqueda</label>
+                        <input class="form-control" placeholder="Ingrese el filtro" id="filtro"/>
+                    </div>
+                </div>
+               <table class="table table-hover table-striped">
+                   <thead>
+                       <tr>
+                           <th>Producto</th>
+                           <th>Talla</th>
+                           <th>Marca</th>
+                           <th>Precio</th>
+                           <th>Acciones</th>
+                       </tr>
+                   </thead>
+                   <tbody id="tabla_productos"></tbody>
+               </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{ 
+    <script src="~/js/pages/ventas.js"></script>
+}

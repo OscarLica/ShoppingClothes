@@ -8,6 +8,7 @@
         $("#exampleModalLabel").text("Nuevo proveedor");
         let formValidation = Module.get("form-validation");
         $("#frm")[0].reset();
+       $("input[data-name='Id']").val(0);
         formValidation.InitValidation();
     })
 
