@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
 
         [HttpPost]
         public IActionResult Create([FromForm] Compra compra) {
-            return Ok(Service.Post(compra));
+            return Ok(Service.Post(compra, User.Identity.Name));
         }
 
         [HttpGet]

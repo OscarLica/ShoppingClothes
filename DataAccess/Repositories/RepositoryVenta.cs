@@ -11,14 +11,16 @@ namespace DataAccess.Repositories
     public interface IRepositoryVenta {
         List<TblVentas> GetAll();
         TblVentas Get(int Id);
-        TblVentas Post(TblVentas tblVentas);
+        TblVentas Post(TblVentas tblVentas, string user);
     }
     public class RepositoryVenta : Repository, IRepositoryVenta
     {
+        private readonly IRepositoryUsuario repositoryUsuario;
         public RepositoryVenta(SqlConnection context, SqlTransaction transaction)
         {
             this._context = context;
             this._transaction = transaction;
+            repositoryUsuario = new RepositoryUsuario(context, transaction);
         }
 
         public TblVentas Get(int Id)
@@ -118,12 +120,15 @@ namespace DataAccess.Repositories
             return result;
         }
 
-        public TblVentas Post(TblVentas tblVentas)
+        public TblVentas Post(TblVentas tblVentas, string user)
         {
 
             var command = CreateCommand($"INSERT INTO Tbl_Ventas (IdUsuario, IdPromocion, NumeroFactura, NombreCliente, Fecha, IVA, SubTotal, Descuento, Total, PagoEfectivo, Cambio, Anular)  output INSERTED.IdVenta values" +
                                    $" (@IdUsuario, @IdPro,@NoFactura,@Cliente, @Fecha,@Iva, @SubTotal, @Descuento, @Total, @PagoEfectivo, @Cambio, @Anular)");
-            command.Parameters.AddWithValue("@IdUsuario", 1);
+
+            var Idusuario = repositoryUsuario.GetIdUsuarioByUserSesion(user);
+
+            command.Parameters.AddWithValue("@IdUsuario", Idusuario);
             command.Parameters.AddWithValue("@IdPro", 1);
             command.Parameters.AddWithValue("@NoFactura", tblVentas.NumeroFactura ?? "01");
             command.Parameters.AddWithValue("@Cliente", tblVentas.NombreCliente);

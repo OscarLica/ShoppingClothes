@@ -14,7 +14,7 @@ namespace WebApplication.Services
     {
         List<Compra> GetAll();
         List<Detalle> GetProductosComprados();
-        Compra Post(Compra compra);
+        Compra Post(Compra compra, string user);
         Compra Update(Compra compra);
         Compra Get(int Id);
         void Delete(int Id);
@@ -62,13 +62,13 @@ namespace WebApplication.Services
             }
         }
 
-        public Compra Post(Compra compra)
+        public Compra Post(Compra compra, string user)
         {
             using (var context = _unitOfWork.Create(Settings.DefaultConnection))
             {
                 var total = context.Repositories.repositoryCompra.GetAll().Count() + 1 ;
                 compra.NoFactura = total.ToString().PadLeft(5, '0');
-                var records = context.Repositories.repositoryCompra.Post(compra);
+                var records = context.Repositories.repositoryCompra.Post(compra, user);
                 // Confirm changes
                 context.SaveChanges();
                 return records;

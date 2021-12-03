@@ -26,6 +26,7 @@ namespace WebApplication
             Configuration = configuration;
         }
 
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -35,10 +36,11 @@ namespace WebApplication
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<AppSettings>(Configuration.GetSection("ConnectionStrings"));
+
 
             services.AddTransient<IUnitOfWork, SqlServerConnection>();
             services.AddTransient<IServiceCatalogo, ServiceCatalogo>();
@@ -51,6 +53,7 @@ namespace WebApplication
             services.AddTransient<IServiceTalla, ServiceTalla>();
             services.AddTransient<IServiceCompra, ServiceCompra>();
             services.AddTransient<IServiceVenta, ServiceVenta>();
+            services.AddTransient<IServiceUsuario, ServiceUsuario>();
 
             services.AddRazorPages();
             services.AddControllers();

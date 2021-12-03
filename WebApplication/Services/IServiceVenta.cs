@@ -13,7 +13,7 @@ namespace WebApplication.Services
     {
         List<TblVentas> GetAll();
         TblVentas Get(int IdVenta);
-        TblVentas Post(TblVentas tblVentas);
+        TblVentas Post(TblVentas tblVentas, string user);
     }
     public class ServiceVenta : IServiceVenta
     {
@@ -43,13 +43,13 @@ namespace WebApplication.Services
             }
         }
 
-        public TblVentas Post(TblVentas tblVentas)
+        public TblVentas Post(TblVentas tblVentas, string user)
         {
             using (var context = _unitOfWork.Create(Settings.DefaultConnection))
             {
                 var total = context.Repositories.repositoryVenta.GetAll().Count() + 1;
                 tblVentas.NumeroFactura = total.ToString().PadLeft(5, '0');
-                var records = context.Repositories.repositoryVenta.Post(tblVentas);
+                var records = context.Repositories.repositoryVenta.Post(tblVentas, user);
                 // Confirm changes
                 context.SaveChanges();
                 return records;

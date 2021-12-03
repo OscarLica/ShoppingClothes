@@ -22,7 +22,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Create([FromForm] TblVentas TblVentas)
         {
-            return Ok(Service.Post(TblVentas));
+            return Ok(Service.Post(TblVentas, User.Identity.Name));
         }
     }
 }

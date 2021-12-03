@@ -14,17 +14,19 @@ namespace DataAccess.Repositories
         List<Compra> GetAll();
         List<Detalle> GetDetalleById(int IdCompra);
         List<Detalle> GetProductosComprados();
-        Compra Post(Compra almacen);
+        Compra Post(Compra almacen, string user);
         Compra Update(Compra almacen);
         Compra Get(int Id);
         void Delete(int Id);
     }
     public class RepositoryCompra : Repository, IRepositoryCompra
     {
+        private readonly IRepositoryUsuario repositoryUsuario;
         public RepositoryCompra(SqlConnection context, SqlTransaction transaction)
         {
             this._context = context;
             this._transaction = transaction;
+            repositoryUsuario = new RepositoryUsuario(context, transaction);
         }
 
         public void Delete(int Id)
@@ -187,11 +189,13 @@ namespace DataAccess.Repositories
             return result;
         }
 
-        public Compra Post(Compra compra)
+        public Compra Post(Compra compra, string user)
         {
             var command = CreateCommand($"INSERT INTO Tbl_Compras (IdUsuario, IdProveedor, FechaCompra, NoFactura, SubTotal, Descuento, Iva, Total, Estado)  output INSERTED.IdCompra values" +
                                     $" (@IdUsuario, @IdPro, @Fecha,@NoFactura, @SubTotal, @Descuento, @Iva, @Total, @Estado)");
-            command.Parameters.AddWithValue("@IdUsuario", 1);
+
+            var Idusuario = repositoryUsuario.GetIdUsuarioByUserSesion(user);
+            command.Parameters.AddWithValue("@IdUsuario", Idusuario);
             command.Parameters.AddWithValue("@IdPro", compra.IdProveedor);
             command.Parameters.AddWithValue("@Fecha", compra.FechaCompra);
             command.Parameters.AddWithValue("@NoFactura", compra.NoFactura ?? "01");
