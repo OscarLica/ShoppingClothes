@@ -14,6 +14,9 @@ namespace WebApplication.Services
         List<TblVentas> GetAll();
         TblVentas Get(int IdVenta);
         TblVentas Post(TblVentas tblVentas, string user);
+        ProductoTaller ProductoTaller(ProductoTaller productoTaller);
+        List<ReporteProductos> GetProductoTallerSalida();
+        ProductoTaller ProductoTallerSalida(ProductoTaller productoTaller);
     }
     public class ServiceVenta : IServiceVenta
     {
@@ -62,6 +65,36 @@ namespace WebApplication.Services
             {
                 var records = context.Repositories.repositoryVenta.Get(IdVenta);
 
+                return records;
+            }
+        }
+
+        public ProductoTaller ProductoTaller(ProductoTaller productoTaller)
+        {
+            using (var context = _unitOfWork.Create(Settings.DefaultConnection))
+            {
+                var records = context.Repositories.repositoryVenta.ProductoTaller(productoTaller);
+                context.SaveChanges();
+                return records;
+            }
+        }
+
+        public List<ReporteProductos> GetProductoTallerSalida()
+        {
+            using (var context = _unitOfWork.Create(Settings.DefaultConnection))
+            {
+                var records = context.Repositories.repositoryVenta.GetProductoTallerSalida();
+
+                return records;
+            }
+        }
+
+        public ProductoTaller ProductoTallerSalida(ProductoTaller productoTaller)
+        {
+            using (var context = _unitOfWork.Create(Settings.DefaultConnection))
+            {
+                var records = context.Repositories.repositoryVenta.ProductoTallerSalida(productoTaller);
+                context.SaveChanges();
                 return records;
             }
         }

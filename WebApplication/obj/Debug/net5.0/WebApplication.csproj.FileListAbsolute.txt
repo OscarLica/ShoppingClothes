@@ -436,7 +436,6 @@ C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\WebA
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\ref\WebApplication.dll
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\WebApplication.pdb
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\WebApplication.genruntimeconfig.cache
-C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Pages\Facturacion\Venta\Detalle.cshtml.g.cs
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Pages\Facturacion\Venta\Ventas.cshtml.g.cs
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -519,3 +518,14 @@ C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razo
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\bin\Debug\net5.0\Rotativa.AspNetCore.dll
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Pages\Reportes\Index.cshtml.g.cs
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Views\Reporte\RptMenosVendidos.cshtml.g.cs
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Views\Reporte\RptMVendidos.cshtml.g.cs
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Views\Reporte\RptPrDañados.cshtml.g.cs
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Pages\Facturacion\Venta\Detail.cshtml.g.cs

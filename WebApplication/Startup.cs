@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Rotativa.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,7 @@ namespace WebApplication
             services.AddTransient<IServiceCompra, ServiceCompra>();
             services.AddTransient<IServiceVenta, ServiceVenta>();
             services.AddTransient<IServiceUsuario, ServiceUsuario>();
+            services.AddTransient<IServiceReport, ServiceReport>();
 
             services.AddRazorPages();
             services.AddControllers();
@@ -82,7 +84,7 @@ namespace WebApplication
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            RotativaConfiguration.Setup(env.ContentRootPath, "Rotativa");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

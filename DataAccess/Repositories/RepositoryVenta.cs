@@ -12,6 +12,9 @@ namespace DataAccess.Repositories
         List<TblVentas> GetAll();
         TblVentas Get(int Id);
         TblVentas Post(TblVentas tblVentas, string user);
+        ProductoTaller ProductoTaller(ProductoTaller productoTaller);
+        List<ReporteProductos> GetProductoTallerSalida();
+        ProductoTaller ProductoTallerSalida(ProductoTaller productoTaller);
     }
     public class RepositoryVenta : Repository, IRepositoryVenta
     {
@@ -56,7 +59,7 @@ namespace DataAccess.Repositories
         public List<Detalle> GetDetalleById(int IdCompra)
         {
             var result = new List<Detalle>();
-            var command = CreateCommand(@$"select c.*, pr.Id as IdProducto, pr.NombreProducto, m.Nombre as Marca, t.Nombre as Talla, co.Nombre as Color, ap.PrecioVenta from Tbl_Detalle_Venta c
+            var command = CreateCommand(@$"select c.*, pr.Id as IdProducto, pr.NombreProducto, m.Nombre as Marca, t.Nombre as Talla, co.Nombre as Color, ap.PrecioVenta, case when (select count(*) from tbl_producto_taller t where t.IdProductoAlmacen = c.IdAlmacenProducto and t.IdVenta = c.IdVenta) >= 1 then 1 else 0 end  as IsReported from Tbl_Detalle_Venta c
                                             JOIN Tbl_Almacen_Producto ap on c.IdAlmacenProducto = ap.IdAlmacenProducto
                                             JOIN Tbl_Producto pr on ap.IdProducto = pr.Id
                                             JOIN Cat_Marca m on ap.IdMarca = m.Id
@@ -71,6 +74,7 @@ namespace DataAccess.Repositories
                     result.Add(new Detalle
                     {
                         IdProducto = Convert.ToInt32(reader[nameof(Detalle.IdProducto)]),
+                        IdAlmacenProducto= Convert.ToInt32(reader[nameof(Detalle.IdAlmacenProducto)]),
                         Cantidad = Convert.ToInt32(reader[nameof(Detalle.Cantidad)]),
                         NombreProducto = Convert.ToString(reader[nameof(Detalle.NombreProducto)]),
                         SubTotal = Convert.ToDecimal(reader[nameof(Detalle.SubTotal)]),
@@ -80,6 +84,7 @@ namespace DataAccess.Repositories
                         Marca = Convert.ToString(reader[nameof(Detalle.Marca)]),
                         Color = Convert.ToString(reader[nameof(Detalle.Color)]),
                         Talla = Convert.ToString(reader[nameof(Detalle.Talla)]),
+                        IsReported = Convert.ToBoolean(reader[nameof(Detalle.IsReported)]),
 
                     });
                 }
@@ -190,6 +195,66 @@ namespace DataAccess.Repositories
             }
 
             return tblVentas;
+        }
+
+        public ProductoTaller ProductoTaller(ProductoTaller productoTaller)
+        {
+            var command = CreateCommand($"INSERT INTO Tbl_Producto_Taller (IdProductoAlmacen, IdVenta, DescripcionIngreso, FechaIngreso) output INSERTED.IdProductoTaller VALUES " +
+                                  $" (@IdProductoAlmacen, @IdVenta,@Descripcion,@FechaIngreso)");
+
+            command.Parameters.AddWithValue("@IdProductoAlmacen",productoTaller.IdProductoAlmacen);
+            command.Parameters.AddWithValue("@IdVenta", productoTaller.IdVenta);
+            command.Parameters.AddWithValue("@Descripcion", productoTaller.DescripcionIngreso);
+            command.Parameters.AddWithValue("@FechaIngreso", DateTime.Now);
+
+            productoTaller.IdProductoTaller = Convert.ToInt32(command.ExecuteScalar());
+            return productoTaller;
+        }
+
+        public ProductoTaller ProductoTallerSalida(ProductoTaller productoTaller)
+        {
+            var command = CreateCommand($"UPDATE Tbl_Producto_Taller SET FechaSalida=@FechaSalida, DescripcionSalida=@Descripcion WHERE IdProductoTaller=@Id");
+
+            command.Parameters.AddWithValue("@Id", productoTaller.IdProductoTaller);
+            
+            command.Parameters.AddWithValue("@Descripcion", productoTaller.DescripcionSalida);
+            command.Parameters.AddWithValue("@FechaSalida", DateTime.Now);
+            command.ExecuteNonQuery();
+            return productoTaller;
+        }
+
+        public List<ReporteProductos> GetProductoTallerSalida()
+        {
+            var result = new List<ReporteProductos>();
+            var command = CreateCommand($@"SELECT pr.NombreProducto as Producto,marca.Nombre as Marca, talla.Nombre as Talla, color.Nombre as Color, dv.DescripcionIngreso, dv.DescripcionSalida, dv.FechaIngreso, dv.FechaSalida
+                                            FROM Tbl_Producto_Taller dv
+                                            JOIN Tbl_Almacen_Producto ap on dv.IdProductoAlmacen = ap.IdAlmacenProducto
+                                            JOIN Tbl_Producto pr on ap.IdProducto = pr.Id
+                                            JOIN Cat_Marca marca on ap.IdMarca = marca.Id
+                                            JOIN Cat_Talla talla on ap.IdTalla = talla.Id
+                                            JOIN Cat_Color color on ap.IdColor = color.Id");
+
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    result.Add(new ReporteProductos
+                    {
+                        Producto = reader[nameof(ReporteProductos.Producto)].ToString(),
+                        Marca = reader[nameof(ReporteProductos.Marca)].ToString(),
+                        Talla = reader[nameof(ReporteProductos.Talla)].ToString(),
+                        Color = reader[nameof(ReporteProductos.Color)].ToString(),
+                        DescripcionIngreso = reader[nameof(ReporteProductos.DescripcionIngreso)].ToString(),
+                        DescripcionSalida = reader[nameof(ReporteProductos.DescripcionSalida)].ToString(),
+                        FechaIngreso = Convert.ToDateTime(reader[nameof(ReporteProductos.FechaIngreso)]),
+                        FechaSalida = Convert.ToDateTime(reader[nameof(ReporteProductos.FechaSalida)]),
+                    });
+                }
+            }
+
+
+            return result;
         }
     }
 }

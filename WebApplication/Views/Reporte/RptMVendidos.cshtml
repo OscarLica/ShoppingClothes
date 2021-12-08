@@ -1,0 +1,45 @@
+﻿@model List<DataEntities.ReporteProductos>
+@{
+    Layout = null;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Reporte de productos más vendidos</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>    
+    <div class="container">
+        <div class="row justify-content-start text-center">
+            <h1 class="text-info">Reporte de productos más vendidos</h1>
+            <span>PALLA'S STORE</span>
+        </div>
+        <table class="table table-hover table-active">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Marca</th>
+                    <th>Talla</th>
+                    <th>Color</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Producto</td>
+                        <td>@item.Marca</td>
+                        <td>@item.Talla</td>
+                        <td>@item.Color</td>
+                        <td>@item.Cantidad</td>
+                        <td>@item.Total</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

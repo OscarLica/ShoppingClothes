@@ -24,5 +24,23 @@ namespace WebApplication.Controllers
         {
             return Ok(Service.Post(TblVentas, User.Identity.Name));
         }
+
+        [HttpPost(nameof(ProductoTaller))]
+        public IActionResult ProductoTaller([FromForm] ProductoTaller productoTaller)
+        {
+            return Ok(Service.ProductoTaller(productoTaller));
+        }
+
+        [HttpPost]
+        public IActionResult ProductoTallerSalida(ProductoTaller productoTaller)
+        {
+            return Ok(Service.ProductoTallerSalida(productoTaller));
+        }
+
+        [HttpGet]
+        public IActionResult GetProductoTallerSalida()
+        {
+            return Ok(Service.GetProductoTallerSalida());
+        }
     }
 }

@@ -28,7 +28,7 @@
 
             tCantidad += +cantidad;
 
-            let subtotal = $formater.formatDecimalString(e.SubTotal.toString());
+            let subtotal = $formater.formatDecimalString(e.subTotal.toString());
             subtotal = $formater.unformatDecimalString(subtotal);
 
             tSubtotal += +subtotal;
@@ -53,7 +53,7 @@
 
         $.each(detalle, function (i, e) {
             
-            let total = $formater.formatDecimalString(e.SubTotal.toString());
+            let total = $formater.formatDecimalString(e.subTotal.toString());
             total = $formater.unformatDecimalString(total);
 
             totales += +total;
@@ -83,7 +83,7 @@
         let button = Module.get("Table");
         $.each(data, function (i, element) {
             row += `<tr>
-                        <td>${element.Producto}</td><td>${element.Marca}</td><td>${element.Talla}</td><td>${element.Color}</td><td>${element.Cantidad}</td><td>${element.PrecioCompra}</td><td>${element.PrecioVenta}</td><td>${$formater.formatDecimalString(element.SubTotal.toString())}</td>
+                        <td>${element.Producto}</td><td>${element.Marca}</td><td>${element.Talla}</td><td>${element.Color}</td><td>${element.Cantidad}</td><td>${element.PrecioCompra}</td><td>${element.PrecioVenta}</td><td>${$formater.formatDecimalString(element.subTotal.toString())}</td>
                         <td>${button.GenerateButton("btn btn-primary", "fas fa-pencil", editar, element.id)} &nbsp; ${button.GenerateButton("btn btn-danger", "fas fa-trash", remove, element.id)}</td>
                     </tr>`;
 

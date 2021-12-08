@@ -28,6 +28,7 @@ namespace DataEntities
 
         public string NombreProducto { get; set; }
         public decimal PrecioUnitario { get; set; }
+        public int IdAlmacenProducto { get; set; }
         public int IdProducto { get; set; }
         public string Producto { get; set; }
         public string Descripcion { get; set; }
@@ -45,6 +46,7 @@ namespace DataEntities
         public decimal Unidad{ get; set; }
         public decimal PrecioVenta { get; set; }
         public string Almacen{ get; set; }
+        public bool IsReported { get; set; }
 
     }
 }
