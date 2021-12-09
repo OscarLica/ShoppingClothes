@@ -31,8 +31,8 @@ namespace WebApplication.Controllers
             return Ok(Service.ProductoTaller(productoTaller));
         }
 
-        [HttpPost]
-        public IActionResult ProductoTallerSalida(ProductoTaller productoTaller)
+        [HttpPost(nameof(ProductoTallerSalida))]
+        public IActionResult ProductoTallerSalida([FromForm] ProductoTaller productoTaller)
         {
             return Ok(Service.ProductoTallerSalida(productoTaller));
         }

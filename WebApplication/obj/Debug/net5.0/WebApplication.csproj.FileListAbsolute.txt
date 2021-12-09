@@ -529,3 +529,4 @@ C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razo
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Views\Reporte\RptMVendidos.cshtml.g.cs
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Views\Reporte\RptPrDañados.cshtml.g.cs
 C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Pages\Facturacion\Venta\Detail.cshtml.g.cs
+C:\Users\Oscar Jimenez\Downloads\Clothing13\WebApplication\obj\Debug\net5.0\Razor\Pages\Taller\Index.cshtml.g.cs

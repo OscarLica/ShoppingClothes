@@ -59,7 +59,7 @@ namespace DataAccess.Repositories
         public List<Detalle> GetDetalleById(int IdCompra)
         {
             var result = new List<Detalle>();
-            var command = CreateCommand(@$"select c.*, pr.Id as IdProducto, pr.NombreProducto, m.Nombre as Marca, t.Nombre as Talla, co.Nombre as Color, ap.PrecioVenta, case when (select count(*) from tbl_producto_taller t where t.IdProductoAlmacen = c.IdAlmacenProducto and t.IdVenta = c.IdVenta) >= 1 then 1 else 0 end  as IsReported from Tbl_Detalle_Venta c
+            var command = CreateCommand(@$"select c.*, pr.Id as IdProducto, pr.NombreProducto, m.Nombre as Marca, t.Nombre as Talla, co.Nombre as Color, ap.PrecioVenta, case when (select count(*) from tbl_producto_taller t where t.IdProductoAlmacen = c.IdAlmacenProducto and t.IdVenta = c.IdVenta and t.FechaSalida is null) >= 1 then 1 else 0 end  as IsReported from Tbl_Detalle_Venta c
                                             JOIN Tbl_Almacen_Producto ap on c.IdAlmacenProducto = ap.IdAlmacenProducto
                                             JOIN Tbl_Producto pr on ap.IdProducto = pr.Id
                                             JOIN Cat_Marca m on ap.IdMarca = m.Id
@@ -106,6 +106,7 @@ namespace DataAccess.Repositories
                     result.Add(new TblVentas
                     {
                         IdVenta = Convert.ToInt32(reader[nameof(TblVentas.IdVenta)]),
+                        UserName = Convert.ToString(reader[nameof(TblVentas.UserName)]),
                         IdUsuario = Convert.ToInt32(reader[nameof(TblVentas.IdUsuario)]),
                         IdPromocion = Convert.ToInt32(reader[nameof(TblVentas.IdPromocion)]),
                         NumeroFactura = Convert.ToString(reader[nameof(TblVentas.NumeroFactura)]),

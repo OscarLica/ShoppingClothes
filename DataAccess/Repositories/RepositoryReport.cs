@@ -24,7 +24,7 @@ namespace DataAccess.Repositories
         public List<ReporteProductos> ReportProductosDaniados()
         {
             var result = new List<ReporteProductos>();
-            var command = CreateCommand(@"select pr.NombreProducto as Producto,marca.Nombre as Marca, talla.Nombre as Talla, color.Nombre as Color, T.DescripcionIngreso, T.DescripcionSalida, T.FechaIngreso, T.FechaSalida from Tbl_Producto_Taller t
+            var command = CreateCommand(@"select v.NumeroFactura, t.IdProductoTaller as Id, pr.NombreProducto as Producto,marca.Nombre as Marca, talla.Nombre as Talla, color.Nombre as Color, T.DescripcionIngreso, T.DescripcionSalida, T.FechaIngreso, T.FechaSalida from Tbl_Producto_Taller t
 JOIN Tbl_Almacen_Producto al on t.IdProductoAlmacen = al.IdAlmacenProducto
 JOIN Tbl_Ventas v on t.IdVenta = v.IdVenta
 JOIN Tbl_Producto pr on al.IdProducto = pr.Id
@@ -38,6 +38,8 @@ JOIN Cat_Color color on al.IdColor = color.Id");
                 {
                     result.Add(new ReporteProductos
                     {
+                        Id = Convert.ToInt32(reader[nameof(ReporteProductos.Id)]),
+                        NumeroFactura = Convert.ToString(reader[nameof(ReporteProductos.NumeroFactura)]),
                         Producto = reader[nameof(ReporteProductos.Producto)].ToString(),
                         Marca = reader[nameof(ReporteProductos.Marca)].ToString(),
                         Talla = reader[nameof(ReporteProductos.Talla)].ToString(),
