@@ -1,4 +1,5 @@
 ﻿$(document).ready(() => {
+    let productos = [];
     let detalle = [];
     const editar = "data-editar";
     const remove = "data-eliminar";
@@ -83,7 +84,7 @@
         let button = Module.get("Table");
         $.each(data, function (i, element) {
             row += `<tr>
-                        <td>${element.Producto}</td><td>${element.Marca}</td><td>${element.Talla}</td><td>${element.Color}</td><td>${element.Cantidad}</td><td>${element.PrecioCompra}</td><td>${element.PrecioVenta}</td><td>${$formater.formatDecimalString(element.subTotal.toString())}</td>
+                        <td>${element.NombreProducto}</td><td>${element.Marca}</td><td>${element.Talla}</td><td>${element.Color}</td><td>${element.Cantidad}</td><td>${element.PrecioCompra}</td><td>${element.PrecioVenta}</td><td>${$formater.formatDecimalString(element.subTotal.toString())}</td>
                         <td>${button.GenerateButton("btn btn-primary", "fas fa-pencil", editar, element.id)} &nbsp; ${button.GenerateButton("btn btn-danger", "fas fa-trash", remove, element.id)}</td>
                     </tr>`;
 
@@ -170,6 +171,41 @@
             $(cbp).append("<option value=" + e.id + ">" + e.nombreProducto + "</option>");
         });
     }
+    const CargarTablaP = (response) => {
+        $("#tabla_productos").empty();
+        $.each(response, function (i, element) {
+            let row = "<tr>";
+            row += "<th>" + element.nombreProducto + "</td>";
+            row += "<th><button class='btn btn-success' data-element='" + JSON.stringify(element) + "' id='seleccionar' data-toggle='tooltip' title='Seleccionar'><i class='fa fa-check'></i></button></td>";
+            row += "</tr>";
+            $("#tabla_productos").append(row);
+        });
+
+        $("#productos-modal").modal("show");
+    };
+
+    $(document).on("click", "#seleccionar", function () {
+
+        productSelected = $(this).data("element");
+        $('input[data-detalle-name="IdProducto"]').val(productSelected.id);
+        $('input[data-detalle-name="NombreProducto"]').val(productSelected.nombreProducto);
+
+        $("#productos-modal").modal("hide");
+
+    });
+
+    $(document).on("keyup", "#filtro", function () {
+        let filtro = $(this).val();
+        let pfiltrados = productos.filter(x => x.nombreProducto.includes(filtro));
+        CargarTablaP(pfiltrados);
+    });
+
+    $(document).on("click", ".input-group-append", function () {
+        $.get("/api/Producto").then(response => {
+            productos = response;
+            CargarTablaP(productos);
+        });
+    });
 
     loadSelects();
 
@@ -243,7 +279,8 @@
         }
         else {
             detalletmp.id = detalle.length + 1;
-            detalletmp.Producto = $("select[data-detalle-name='IdProducto'] option:selected").text();
+            detalletmp.Producto = $("input[data-detalle-name='IdProducto']").text();
+            detalletmp.NameProducto = $("input[data-detalle-name='NombreProducto']").text();
             detalletmp.Marca = $("select[data-detalle-name='IdMarca'] option:selected").text();
             detalletmp.Talla = $("select[data-detalle-name='IdTalla'] option:selected").text();
             detalletmp.Color= $("select[data-detalle-name='IdColor'] option:selected").text();
