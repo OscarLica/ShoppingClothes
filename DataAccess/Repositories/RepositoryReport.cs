@@ -10,9 +10,9 @@ namespace DataAccess.Repositories
 {
     public interface IRepositoryReport
     {
-        List<ReporteProductos> ReportProductosMasBendidos();
-        List<ReporteProductos> ReportProductosMenosBendidos();
-        List<ReporteProductos> ReportProductosDaniados();
+        List<ReporteProductos> ReportProductosMasBendidos(DateTime? Inicio, DateTime? Fin);
+        List<ReporteProductos> ReportProductosMenosBendidos(DateTime? Inicio, DateTime? Fin);
+        List<ReporteProductos> ReportProductosDaniados(DateTime? Inicio, DateTime? Fin);
     }
     public class RepositoryReport : Repository, IRepositoryReport
     {
@@ -21,7 +21,7 @@ namespace DataAccess.Repositories
             this._context = context;
             this._transaction = transaction;
         }
-        public List<ReporteProductos> ReportProductosDaniados()
+        public List<ReporteProductos> ReportProductosDaniados(DateTime? Inicio, DateTime? Fin)
         {
             var result = new List<ReporteProductos>();
             var command = CreateCommand(@"select v.NumeroFactura, t.IdProductoTaller as Id, pr.NombreProducto as Producto,marca.Nombre as Marca, talla.Nombre as Talla, color.Nombre as Color, T.DescripcionIngreso, T.DescripcionSalida, T.FechaIngreso, T.FechaSalida from Tbl_Producto_Taller t
@@ -52,15 +52,16 @@ JOIN Cat_Color color on al.IdColor = color.Id");
                 }
             }
 
-
+            result = Inicio == null && Fin == null ? result : result.Where(x => x.FechaIngreso >= Inicio && x.FechaIngreso <= Fin).ToList();
             return result;
 
         }
 
-        public List<ReporteProductos> ReportProductosMasBendidos()
+        public List<ReporteProductos> ReportProductosMasBendidos(DateTime? Inicio, DateTime? Fin)
         {
             var result = new List<ReporteProductos>();
-            var command = CreateCommand(@"SELECT pr.NombreProducto as Producto,marca.Nombre as Marca, talla.Nombre as Talla, color.Nombre as Color, dv.Cantidad , dv.Total FROM Tbl_Detalle_Venta dv
+            var command = CreateCommand(@"SELECT v.Fecha, pr.NombreProducto as Producto,marca.Nombre as Marca, talla.Nombre as Talla, color.Nombre as Color, dv.Cantidad , dv.Total FROM Tbl_Detalle_Venta dv
+                                            JOIN Tbl_Ventas v on dv.IdVenta = v.IdVenta
                                             JOIN Tbl_Almacen_Producto ap on dv.IdAlmacenProducto = ap.IdAlmacenProducto
                                             JOIN Tbl_Producto pr on ap.IdProducto = pr.Id
                                             JOIN Cat_Marca marca on ap.IdMarca = marca.Id
@@ -79,10 +80,11 @@ JOIN Cat_Color color on al.IdColor = color.Id");
                         Color = reader[nameof(ReporteProductos.Color)].ToString(),
                         Cantidad = Convert.ToInt32(reader[nameof(ReporteProductos.Cantidad)]),
                         Total = Convert.ToDecimal(reader[nameof(ReporteProductos.Total)]),
+                        Fecha = Convert.ToDateTime(reader[nameof(ReporteProductos.Fecha)]),
                     });
                 }
             }
-
+            result = Inicio == null && Fin == null ? result : result.Where(x => x.Fecha >= Inicio && x.Fecha <= Fin).ToList();
             var group = (from produco in result
                          group produco by new { produco.Producto, produco.Marca, produco.Talla, produco.Color }
                           into grupoP
@@ -94,15 +96,16 @@ JOIN Cat_Color color on al.IdColor = color.Id");
                              Color = grupoP.Key.Talla,
                              Cantidad = grupoP.Sum(x => x.Cantidad),
                              Total = grupoP.Sum(x => x.Total)
-                         }).OrderByDescending(x => x.Cantidad);
+                         }).OrderByDescending(x => x.Cantidad).ToList();
 
-            return result;
+            return group;
         }
 
-        public List<ReporteProductos> ReportProductosMenosBendidos()
+        public List<ReporteProductos> ReportProductosMenosBendidos(DateTime? Inicio, DateTime? Fin)
         {
             var result = new List<ReporteProductos>();
-            var command = CreateCommand(@"SELECT pr.NombreProducto as Producto,marca.Nombre as Marca, talla.Nombre as Talla, color.Nombre as Color, dv.Cantidad , dv.Total FROM Tbl_Detalle_Venta dv
+            var command = CreateCommand(@"SELECT v.Fecha, pr.NombreProducto as Producto,marca.Nombre as Marca, talla.Nombre as Talla, color.Nombre as Color, dv.Cantidad , dv.Total FROM Tbl_Detalle_Venta dv
+                                            JOIN Tbl_Ventas v on dv.IdVenta = v.IdVenta
                                             JOIN Tbl_Almacen_Producto ap on dv.IdAlmacenProducto = ap.IdAlmacenProducto
                                             JOIN Tbl_Producto pr on ap.IdProducto = pr.Id
                                             JOIN Cat_Marca marca on ap.IdMarca = marca.Id
@@ -121,10 +124,11 @@ JOIN Cat_Color color on al.IdColor = color.Id");
                         Color = reader[nameof(ReporteProductos.Color)].ToString(),
                         Cantidad = Convert.ToInt32(reader[nameof(ReporteProductos.Cantidad)]),
                         Total = Convert.ToDecimal(reader[nameof(ReporteProductos.Total)]),
+                        Fecha = Convert.ToDateTime(reader[nameof(ReporteProductos.Fecha)]),
                     });
                 }
             }
-
+            result = Inicio == null && Fin == null ? result : result.Where(x => x.Fecha >= Inicio && x.Fecha <= Fin).ToList();
             var group = (from produco in result
                          group produco by new { produco.Producto, produco.Marca, produco.Talla, produco.Color }
                           into grupoP
@@ -136,9 +140,9 @@ JOIN Cat_Color color on al.IdColor = color.Id");
                              Color = grupoP.Key.Talla,
                              Cantidad = grupoP.Sum(x => x.Cantidad),
                              Total = grupoP.Sum(x => x.Total)
-                         }).OrderBy(x => x.Cantidad);
+                         }).OrderBy(x => x.Cantidad).ToList();
 
-            return result;
+            return group;
         }
 
     }

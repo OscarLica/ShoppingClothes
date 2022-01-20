@@ -56,6 +56,7 @@ namespace WebApplication
             services.AddTransient<IServiceVenta, ServiceVenta>();
             services.AddTransient<IServiceUsuario, ServiceUsuario>();
             services.AddTransient<IServiceReport, ServiceReport>();
+            services.AddTransient<IServiceInventario, ServiceInventario>();
 
             services.AddRazorPages();
             services.AddControllers();

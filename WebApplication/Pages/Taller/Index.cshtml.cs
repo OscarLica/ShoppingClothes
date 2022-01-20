@@ -18,7 +18,7 @@ namespace WebApplication.Pages.Taller
         }
         public void OnGet()
         {
-            productosTaller = _serviceReport.ReportProductosDaniados();
+            productosTaller = _serviceReport.ReportProductosDaniados(null,null);
         }
     }
 }

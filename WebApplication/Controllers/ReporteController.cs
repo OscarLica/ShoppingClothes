@@ -18,10 +18,10 @@ namespace WebApplication.Controllers
 
         }
 
-        [HttpGet("Reporte/ReportProductosMasBendidos")]
-        public async Task<IActionResult> ReportProductosMasBendidos()
+        [HttpGet("Reporte/ReportProductosMasBendidos/{inicio}/{fin}")]
+        public async Task<IActionResult> ReportProductosMasBendidos(DateTime? Inicio, DateTime? Fin)
         {
-            var model = _serviceReport.ReportProductosMasBendidos();
+            var model = _serviceReport.ReportProductosMasBendidos(Inicio, Fin);
             var pdfDocument = new ViewAsPdf("RptMVendidos", model)
             {
                 PageSize = Size.Letter,
@@ -33,10 +33,10 @@ namespace WebApplication.Controllers
             return Ok(byteArray);
         }
 
-        [HttpGet("Reporte/ReportProductosMenosBendidos")]
-        public async Task<IActionResult> ReportProductosMenosBendidos()
+        [HttpGet("Reporte/ReportProductosMenosBendidos/{inicio}/{fin}")]
+        public async Task<IActionResult> ReportProductosMenosBendidos(DateTime? Inicio, DateTime? Fin)
         {
-            var model = _serviceReport.ReportProductosMasBendidos();
+            var model = _serviceReport.ReportProductosMenosBendidos(Inicio, Fin);
             var pdfDocument = new ViewAsPdf("RptMenosVendidos", model)
             {
                 PageSize = Size.Letter,
@@ -48,10 +48,10 @@ namespace WebApplication.Controllers
             return Ok(byteArray);
         }
 
-        [HttpGet("Reporte/ReportProductosDaniados")]
-        public async Task<IActionResult> ReportProductosDaniados()
+        [HttpGet("Reporte/ReportProductosDaniados/{inicio}/{fin}")]
+        public async Task<IActionResult> ReportProductosDaniados(DateTime? Inicio, DateTime? Fin)
         {
-            var model = _serviceReport.ReportProductosDaniados();
+            var model = _serviceReport.ReportProductosDaniados(Inicio, Fin);
             var pdfDocument = new ViewAsPdf("RptPrDañados", model)
             {
                 PageSize = Size.Letter,

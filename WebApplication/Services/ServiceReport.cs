@@ -10,9 +10,9 @@ using WebApplication.Configuration;
 namespace WebApplication.Services
 {
     public interface IServiceReport {
-        List<ReporteProductos> ReportProductosMasBendidos();
-        List<ReporteProductos> ReportProductosMenosBendidos();
-        List<ReporteProductos> ReportProductosDaniados();
+        List<ReporteProductos> ReportProductosMasBendidos(DateTime? Inicio, DateTime? Fin);
+        List<ReporteProductos> ReportProductosMenosBendidos(DateTime? Inicio, DateTime? Fin);
+        List<ReporteProductos> ReportProductosDaniados(DateTime? Inicio, DateTime? Fin);
     }
 
     public class ServiceReport : IServiceReport
@@ -27,30 +27,30 @@ namespace WebApplication.Services
             _unitOfWork = unitOfWork;
             Settings = appSettings.Value;
         }
-        public List<ReporteProductos> ReportProductosDaniados()
+        public List<ReporteProductos> ReportProductosDaniados(DateTime? Inicio, DateTime? Fin)
         {
 
             using (var context = _unitOfWork.Create(Settings.DefaultConnection))
             {
-                var records = context.Repositories.repository.ReportProductosDaniados();
+                var records = context.Repositories.repository.ReportProductosDaniados(Inicio, Fin);
                 return records;
             }
         }
 
-        public List<ReporteProductos> ReportProductosMasBendidos()
+        public List<ReporteProductos> ReportProductosMasBendidos(DateTime? Inicio, DateTime? Fin)
         {
             using (var context = _unitOfWork.Create(Settings.DefaultConnection))
             {
-                var records = context.Repositories.repository.ReportProductosMasBendidos();
+                var records = context.Repositories.repository.ReportProductosMasBendidos(Inicio, Fin);
                 return records;
             }
         }
 
-        public List<ReporteProductos> ReportProductosMenosBendidos()
+        public List<ReporteProductos> ReportProductosMenosBendidos(DateTime? Inicio, DateTime? Fin)
         {
             using (var context = _unitOfWork.Create(Settings.DefaultConnection))
             {
-                var records = context.Repositories.repository.ReportProductosMenosBendidos();
+                var records = context.Repositories.repository.ReportProductosMenosBendidos(Inicio, Fin);
                 return records;
             }
         }

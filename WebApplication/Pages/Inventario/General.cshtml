@@ -1,0 +1,59 @@
+﻿@page
+@model WebApplication.Pages.Inventario.GeneralModel
+@{
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Inventario/Index">Inventario compras</a></li>
+        <li class="breadcrumb-item"><a href="~/Inventario/Ventas">Inventario ventas</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="~/Inventario/General">Inventario general</a></li>
+    </ol>
+</nav>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Producto
+                        </th>
+                        <th>
+                            Marca
+                        </th>
+                        <th>
+                            Talla
+                        </th>
+                        <th>
+                            Color
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var grupoInv in Model.Inventario.GroupBy(x => new { x.NombreProducto, x.Marca, x.Talla, x.Color }).Select(y => new { NombreProducto = y.Key.NombreProducto, Marca = y.Key.Marca, y.Key.Talla, y.Key.Color, Cantidad = y.Sum(p => p.Cantidad) }))
+                    {
+                        <tr>
+                            <td>
+                                @grupoInv.NombreProducto
+                            </td>
+                            <td>
+                                @grupoInv.Marca
+                            </td>
+                            <td>
+                                @grupoInv.Talla
+                            </td>
+                            <td>
+                                @grupoInv.Color
+                            </td>
+                            <td>
+                                @grupoInv.Cantidad
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

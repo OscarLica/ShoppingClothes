@@ -21,8 +21,8 @@ namespace WebApplication.Controllers
             _serviceReport = serviceReport;
         }
 
-        public async Task<byte[]> ReportProductosMasBendidos() {
-            var model = _serviceReport.ReportProductosMasBendidos();
+        public async Task<byte[]> ReportProductosMasBendidos(DateTime? Inicio, DateTime? Fin) {
+            var model = _serviceReport.ReportProductosMasBendidos(Inicio, Fin);
             var pdfDocument = new ViewAsPdf("Report", model)
             {
                 PageSize = Size.Letter,

@@ -22,5 +22,6 @@ namespace DataAccess.Interfaces
         IRepositoryVenta repositoryVenta{ get; }
         IRepositoryUsuario repositoryUsuario { get; }
         IRepositoryReport repository { get; }
+        IRepositoryInventario repositoryInventario{ get; }
     }
 }

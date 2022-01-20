@@ -8,6 +8,7 @@ namespace DataEntities
 {
     public class ReporteProductos
     {
+        public DateTime Fecha { get; set; }
         public string NumeroFactura { get; set; }
         public int Id { get; set; }
         public string Producto { get; set; }
