@@ -1,6 +1,8 @@
 ﻿using DataEntities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Rotativa.AspNetCore;
+using Rotativa.AspNetCore.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +43,12 @@ namespace WebApplication.Controllers
         public IActionResult GetProductoTallerSalida()
         {
             return Ok(Service.GetProductoTallerSalida());
+        }
+
+        [HttpGet("/api/Venta/Anular/{IdVenta}")]
+        public IActionResult Anular(int IdVenta)
+        {
+            return Ok(Service.Anular(IdVenta));
         }
     }
 }

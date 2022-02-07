@@ -12,9 +12,11 @@ namespace WebApplication.Controllers
     public class ReporteController : Controller
     {
         private readonly IServiceReport _serviceReport;
-        public ReporteController(IServiceReport serviceReport)
+        private readonly IServiceVenta Service;
+        public ReporteController(IServiceReport serviceReport, IServiceVenta service)
         {
             _serviceReport = serviceReport;
+            Service = service;
 
         }
 
@@ -60,6 +62,22 @@ namespace WebApplication.Controllers
             };
 
             var byteArray = await pdfDocument.BuildFile(ControllerContext);
+            return Ok(byteArray);
+        }
+
+        [HttpGet("Reporte/Venta/{IdVenta}")]
+        public IActionResult Ver(int IdVenta)
+        {
+            var venta = Service.Get(IdVenta);
+
+            var pdfDocument = new ViewAsPdf("Venta", venta)
+            {
+                PageSize = Size.Letter,
+                PageOrientation = Orientation.Portrait,
+                PageMargins = new Margins(11, 7, 20, 7)
+            };
+
+            var byteArray = pdfDocument.BuildFile(ControllerContext).GetAwaiter().GetResult();
             return Ok(byteArray);
         }
     }

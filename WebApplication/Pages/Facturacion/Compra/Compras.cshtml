@@ -21,6 +21,7 @@
     <tbody>
         @foreach (var item in Model.Compra)
         {
+            var style = item.Estado == "A" ? "color:red" : "color:green";
             <tr><td>@item.NoFactura</td>
             <td>@item.UserName</td>
             <td>@item.Compania</td>

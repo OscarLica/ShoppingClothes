@@ -107,8 +107,31 @@
             CargarTablaP(productos);
         });
     });
+    const CalculoCambioEfectivo = (total, efectivo) => {
+        if ($formater.unformatDecimalString(efectivo) < $formater.unformatDecimalString(total)) {
+            $(this).val("");
+             swal({
+                title: "Efectivo insuficiente!",
+                text: "El monto en efectivo debe ser mayor al monto total de la factura!",
+                icon: "info",
+                button: "Ok"
+             });
 
-    
+            $("input[data-name='PagoEfectivo']").val("");
+
+            return;
+        }
+
+        return $formater.formatDecimalString(($formater.unformatDecimalString(efectivo) - $formater.unformatDecimalString(total)).toString());
+    }
+    $(document).on("blur", "input[data-name='PagoEfectivo']", function () {
+
+        var total = $("input[data-name='Total']").val();
+        var efectivo = $(this).val();
+        var result = CalculoCambioEfectivo(total, efectivo);
+
+        $("input[data-name='Cambio']").val(result);
+    });
 
     $(document).on("click", "#seleccionar", function () {
         
@@ -153,6 +176,7 @@ Color : ${productSelected.color}`;
             });
             return false;
         }
+
         $.post("/api/venta", TblVentas).then((response) => {
             swal({
                 title: "Venta!",

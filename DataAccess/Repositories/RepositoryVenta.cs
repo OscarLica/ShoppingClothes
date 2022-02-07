@@ -11,6 +11,7 @@ namespace DataAccess.Repositories
     public interface IRepositoryVenta {
         List<TblVentas> GetAll();
         TblVentas Get(int Id);
+        TblVentas Anular(int Id);
         TblVentas Post(TblVentas tblVentas, string user);
         ProductoTaller ProductoTaller(ProductoTaller productoTaller);
         List<ReporteProductos> GetProductoTallerSalida();
@@ -50,7 +51,9 @@ namespace DataAccess.Repositories
                     Descuento = Convert.ToDecimal(reader[nameof(TblVentas.Descuento)]),
                     Iva = Convert.ToDecimal(reader[nameof(TblVentas.Iva)]),
                     Total = Convert.ToDecimal(reader[nameof(TblVentas.Total)]),
-                    detalle = GetDetalleById(Convert.ToInt32(reader[nameof(TblVentas.IdVenta)]))
+                    detalle = GetDetalleById(Convert.ToInt32(reader[nameof(TblVentas.IdVenta)])),
+                    PagoEfectivo = Convert.ToDecimal(reader[nameof(TblVentas.PagoEfectivo)]),
+                    Cambio = Convert.ToDecimal(reader[nameof(TblVentas.Cambio)])
                 };
             }
 
@@ -116,6 +119,9 @@ namespace DataAccess.Repositories
                         Descuento = Convert.ToDecimal(reader[nameof(TblVentas.Descuento)]),
                         Iva = Convert.ToDecimal(reader[nameof(TblVentas.Iva)]),
                         Total = Convert.ToDecimal(reader[nameof(TblVentas.Total)]),
+                        Anular = reader[nameof(TblVentas.Anular)].ToString(),
+                        PagoEfectivo = Convert.ToDecimal(reader[nameof(TblVentas.PagoEfectivo)]),
+                        Cambio = Convert.ToDecimal(reader[nameof(TblVentas.Cambio)])
                     });
                 }
             }
@@ -143,8 +149,8 @@ namespace DataAccess.Repositories
             command.Parameters.AddWithValue("@SubTotal", tblVentas.SubTotal ?? default);
             command.Parameters.AddWithValue("@Descuento", tblVentas.Descuento ?? default);
             command.Parameters.AddWithValue("@Total", tblVentas.Total ?? default);
-            command.Parameters.AddWithValue("@PagoEfectivo", 0);
-            command.Parameters.AddWithValue("@Cambio", 0);
+            command.Parameters.AddWithValue("@PagoEfectivo", tblVentas.PagoEfectivo);
+            command.Parameters.AddWithValue("@Cambio", tblVentas.Cambio);
             command.Parameters.AddWithValue("@Anular", false);
 
             tblVentas.IdVenta = Convert.ToInt32(command.ExecuteScalar());
@@ -256,6 +262,15 @@ namespace DataAccess.Repositories
 
 
             return result;
+        }
+
+        public TblVentas Anular(int Id)
+        {
+            var command = CreateCommand($"update Tbl_ventas set Anular='1'  where IdVenta = @Id");
+            command.Parameters.AddWithValue("@Id", Id);
+
+            command.ExecuteNonQuery();
+            return new TblVentas { IdVenta = Id };
         }
     }
 }

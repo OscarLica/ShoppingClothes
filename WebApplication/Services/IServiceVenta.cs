@@ -13,6 +13,7 @@ namespace WebApplication.Services
     {
         List<TblVentas> GetAll();
         TblVentas Get(int IdVenta);
+        TblVentas Anular(int IdVenta);
         TblVentas Post(TblVentas tblVentas, string user);
         ProductoTaller ProductoTaller(ProductoTaller productoTaller);
         List<ReporteProductos> GetProductoTallerSalida();
@@ -96,6 +97,17 @@ namespace WebApplication.Services
                 var records = context.Repositories.repositoryVenta.ProductoTallerSalida(productoTaller);
                 context.SaveChanges();
                 return records;
+            }
+        }
+
+        public TblVentas Anular(int IdVenta)
+        {
+            using (var context = _unitOfWork.Create(Settings.DefaultConnection))
+            {
+                var records = context.Repositories.repositoryVenta.Anular(IdVenta);
+                context.SaveChanges();
+                return records;
+
             }
         }
     }

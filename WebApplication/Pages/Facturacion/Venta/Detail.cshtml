@@ -63,11 +63,29 @@
 
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
             <label>Total</label>
             <input class="form-control" placeholder="0.0" data-name="Total" required readonly asp-for="venta.Total" />
 
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Pago efectivo</label>
+            <input class="form-control" placeholder="0.0" data-name="PagoEfectivo" asp-for="venta.PagoEfectivo" required readonly />
+            <div class="invalid-feedback">
+                El campo Pago efectivo es requerido
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Cambio</label>
+            <input class="form-control" placeholder="0.0" data-name="Cambio" asp-for="venta.Cambio" required readonly />
+            <div class="invalid-feedback">
+                El campo Cambio es requerido
+            </div>
         </div>
     </div>
 </div>

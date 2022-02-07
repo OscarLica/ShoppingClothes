@@ -1,0 +1,161 @@
+﻿@model DataEntities.TblVentas
+@{
+    Layout = null;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Reporte de venta</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <h3>
+        <span class="text-left text-info">Datos Venta </span>&nbsp;
+        <span class="text-center text-info">PALLA´S STORE</span>
+    </h3>
+    <div class="border-top my-3"></div>
+    <div class="form-row">
+        <div class="col-md-4">
+            <input type="hidden" id="idventa" value="@Model.IdVenta" />
+            <div class="form-group">
+                <label>Nº Factura</label>
+                <input class="form-control" placeholder="0000" data-name="NoFactura" required readonly value="@Model.NumeroFactura" />
+                <div class="invalid-feedback">
+                    El campo Factura es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" class="form-control" placeholder="dd/mm/aaaa" data-name="FechaCompra" required value="@Model.Fecha.Value.ToShortDateString()" readonly />
+                <div class="invalid-feedback">
+                    El campo Fecha es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Cliente</label>
+                <input class="form-control" placeholder="0000" data-name="IdProveedor" disabled value="@Model.NombreCliente" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Sub total</label>
+                <input class="form-control" placeholder="0.0" data-name="SubTotal" required readonly value="@Model.SubTotal" />
+                <div class="invalid-feedback">
+                    El campo SubTotal es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Descuento</label>
+                <input class="form-control" placeholder="0.0" data-name="Descuento" required data-val-masktype="integer" value="@Model.Descuento" readonly />
+                <div class="invalid-feedback">
+                    El campo Descuento es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Iva</label>
+                <input class="form-control" placeholder="0" data-name="Iva" required data-val-masktype="integer" value="@Model.Iva" readonly />
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Total</label>
+                <input class="form-control" placeholder="0.0" data-name="Total" required readonly value="@Model.Total" />
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Pago efectivo</label>
+                <input class="form-control" placeholder="0.0" data-name="PagoEfectivo" value="@Model.PagoEfectivo" required readonly/>
+                <div class="invalid-feedback">
+                    El campo Pago efectivo es requerido
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Cambio</label>
+                <input class="form-control" placeholder="0.0" data-name="Cambio" required readonly value="@Model.Cambio"/>
+                <div class="invalid-feedback">
+                    El campo Cambio es requerido
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <h3 class="text-left text-info">Detalle Venta</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr><th>Producto</th><th>Marca</th><th>Talla</th><th>Color</th><th>Cantidad</th><th>Precio Venta</th><th>SubTotal</th></tr>
+        </thead>
+        <tbody id="body">
+            @foreach (var item in Model.detalle)
+            {
+                <tr>
+                    <td>@item.NombreProducto</td>
+                    <td>@item.Marca</td>
+                    <td>@item.Talla</td>
+                    <td>@item.Color</td>
+                    <td>@item.Cantidad</td>
+                    <td>@item.PrecioVenta.ToString("N2")</td>
+                    <td>@(item.SubTotal.Value.ToString("N2"))</td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Total</th>
+                <th>@Model.detalle.Sum(x => x.Cantidad).Value.ToString("N2")</th>
+                <th>@Model.detalle.Sum(x => x.PrecioVenta).ToString("N2")</th>
+                <th>@Model.detalle.Sum(x => x.SubTotal).Value.ToString("N2")</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input data-name="Id" type="hidden" value="0" />
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <input type="hidden" id="productoAlmacen" />
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea class="form-control" required placeholder="Ingrese el Descripción" id="desc"></textarea>
+                                <span class="text-danger" id="validation"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" data-send-taller="true" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

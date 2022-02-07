@@ -21,7 +21,8 @@
     <tbody>
         @foreach (var item in Model.Ventas)
         {
-            <tr>
+            var style = item.Anular == "1" ? "color:red" : "color:green";
+            <tr style="@style">
                 <td>@item.NumeroFactura</td>
                 <td>@item.UserName</td>
                 <td>@item.NombreCliente</td>
@@ -30,7 +31,11 @@
                 <td>@item.Descuento</td>
                 <td>@item.Iva</td>
                 <td>@item.Total</td>
-                <td><a href="~/Facturacion/Venta/Detail/@item.IdVenta">Detalle</a></td>
+                <td>
+                    <a href="~/Facturacion/Venta/Detail/@item.IdVenta">Detalle</a>
+                    <a href="#" data-anular-factura="@item.IdVenta">Anular</a>
+                    <a href="#" data-ver-factura="@item.IdVenta">Factura</a>
+                </td>
             </tr>
         }
     </tbody>
@@ -47,3 +52,30 @@
         </tr>
     </tfoot>
 </table>
+
+<div class="modal fade" id="ver-venta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reporte de venta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 text-center embed-responsive embed-responsive-16by9" id="reporte-avance-procesos">
+                        <iframe width="1000" height="600" id="embedReporte" class="embed-responsive-item"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>  
+@section Scripts{ 
+
+    <script src="~/js/pages/ventas-index.js"></script>
+}
